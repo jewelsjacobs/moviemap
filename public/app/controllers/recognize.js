@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
 	.controller('RecognizeCtrl', ['$scope', '$state', '$rootScope', '$filter', '$location', 'Statusservice', 'Rekognitionservice', 'Localimageservice', 'Namefactory', 'createDialog', function ($scope, $state, $rootScope, $filter, $location, Statusservice, Rekognitionservice, Localimageservice, Namefactory, createDialogService) {
 
 		$rootScope.status.message = 'Please look into the device camera.';

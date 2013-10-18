@@ -5,7 +5,7 @@
  * I don't have time to make this decent.
  */
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
 	.controller('RegisterModalCtrl', ['$scope', '$state', '$timeout', '$location', 'Statusservice', 'Facebook', 'Rekognitionservice', 'Namefactory', 'Localimageservice', '$rootScope', function ($scope, $state, $timeout, $location, Statusservice, Facebook, Rekognitionservice, Namefactory, Localimageservice, $rootScope) {
 
 		$scope.formScope = this.$$childTail;

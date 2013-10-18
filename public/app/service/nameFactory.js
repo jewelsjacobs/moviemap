@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
   .service('Namefactory', function Namefactory() {
 		return {
 			firstname : '',

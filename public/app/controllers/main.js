@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
 	.controller('MainCtrl', ['$scope', '$rootScope', 'createDialog', function ($scope, $rootScope, createDialogService) {
 
 		$rootScope.spinnerOpts = {

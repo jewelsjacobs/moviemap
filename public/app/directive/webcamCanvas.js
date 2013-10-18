@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
 	.directive('webcamCanvas', ['$timeout', '$rootScope', function (timer, $rootScope) {
 		return {
 			require: ['^webcam'],

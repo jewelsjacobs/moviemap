@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
   .controller('HeaderCtrl', ['$scope', 'Namefactory', 'Localimageservice', '$rootScope', function ($scope, Namefactory, Localimageservice, $rootScope) {
 		$rootScope.$watch('loggedIn', function(value) {
 			if (value) {

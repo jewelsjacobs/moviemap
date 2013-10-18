@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
   .directive('webglContainer', [function () {
 		return {
 			restrict: "A",

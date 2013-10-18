@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp', ['ngRoute', 'ui.router', 'angularSpinner', 'ngSanitize', 'angularSpinner', 'ajoslin.promise-tracker'])
+angular.module('movieMapApp', ['ngRoute', 'ui.router', 'restangular', 'angularSpinner', 'ngSanitize', 'angularSpinner', 'ajoslin.promise-tracker'])
 	.config(['$stateProvider', '$urlRouterProvider', '$routeProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider, $httpProvider) {
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
 		$urlRouterProvider.otherwise('/');

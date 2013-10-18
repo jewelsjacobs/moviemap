@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
   .filter('toTitleCase', [function () {
 		return function (text) {
 			return text.replace(/\w\S*/g, function (txt) {

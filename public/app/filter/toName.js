@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
   .filter('toName', [function () {
 		return function (text) {
 			return text.replace('_', ' ').replace(/\w\S*/g, function (txt) {

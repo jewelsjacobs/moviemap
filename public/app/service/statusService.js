@@ -2,7 +2,7 @@
  * Created by jjacobs on 9/26/13.
  */
 
-angular.module('facialUiApp')
+angular.module('movieMapApp')
 	.service('Statusservice', function Statusservice($rootScope, Namefactory) {
 		return {
 			set: function () {

@@ -1220,6 +1220,10 @@ leafletDirective.directive('leaflet', [
 					new L.Control.GeoSearch({
 						provider: new L.GeoSearch.Provider.OpenStreetMap()
 					}).addTo(map);
+					$('leaflet-control-geosearch-qry').suggest({
+						key: "AIzaSyCB6HFuNF-E9qTHW9Ba39NgkpHx701gr1Q",
+						filter:'(all type:/film/film_location)'
+					});
 				}
 			}
 		};

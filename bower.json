@@ -22,13 +22,13 @@
     "angular-scenario": "~1.0.8",
     "angular-cookies": "~1.0.8",
     "angular-sanitize": "~1.0.8",
-    "angular-ui-router": "~0.2.0",
     "restangular": "~1.1.6",
     "angular-animate": "~1.2.0-rc.3",
     "angular-loader": "~1.0.8",
     "angular-touch": "~1.2.0-rc.3",
     "angular-promise-tracker": "~1.4.0",
     "angular-spinner": "~0.2.1",
-    "angular-route": "~1.2.0-rc.3"
+    "angular-route": "~1.2.0-rc.3",
+    "angular-leaflet": "~0.6.0"
   }
 }

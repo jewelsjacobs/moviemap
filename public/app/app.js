@@ -1,44 +1,17 @@
 'use strict';
 
-angular.module('movieMapApp', ['ngRoute', 'ui.router', 'restangular', 'angularSpinner', 'ngSanitize', 'angularSpinner', 'ajoslin.promise-tracker'])
-	.config(['$stateProvider', '$urlRouterProvider', '$routeProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $routeProvider, $locationProvider, $httpProvider) {
+angular.module('movieMapApp', ['ngRoute', 'restangular','leaflet-directive', 'angularSpinner', 'ngSanitize', 'angularSpinner', 'ajoslin.promise-tracker', 'geolocation'])
+	.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
-		$urlRouterProvider.otherwise('/');
-		$stateProvider
-			.state('index', {
-				views: {
-					"header": {
-						templateUrl: "views/header.html",
-						controller: 'HeaderCtrl'
-					},
-					"main": {
-						templateUrl: "views/main.html",
-						controller: 'RecognizeCtrl'
-					},
-					"footer": {
-						templateUrl: "views/footer.html"
-					}
-				},
-				url: "/"
-			})
-			.state('index.register', {
-				"main": {
-					templateUrl: "views/main.html",
-					controller: 'MainCtrl'
-				}
-			})
-			.state('index.loggedin', {
-				templateUrl: "views/video_wall.html"
+		$routeProvider.
+			when('/', {
+				templateUrl: 'views/map.html',
+				controller: 'MainCtrl'
+			}).
+			otherwise({
+				redirectTo: '/'
 			});
-
 		$locationProvider.html5Mode(true);
-
-		var myAppId = '532226223524802';
-//		var myAppSecret = '671fb6fadec43200d40dc4bcf1b543a7';
-
-		// You can set appId with setApp method
-		// FacebookProvider.setAppId('myAppId');
-
   }]).
 	run(function($rootScope) {
 		$rootScope.hideSpinner = false;

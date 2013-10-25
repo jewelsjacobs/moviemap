@@ -1,8 +1,5 @@
 'use strict';
 
-/* Services */
-'use strict';
-
 /**
  * Freebase service
  * API Docs: https://developers.google.com/freebase/

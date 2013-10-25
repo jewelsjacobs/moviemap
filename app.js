@@ -48,6 +48,6 @@ app.get('/*', routes.index);
 // Start server
 app.listen(port);
 console.log('Server starting on ' + port + ' in ' + process.env.NODE_ENV + ' environment.');
-//if (port > 80) {
-//	open("http://localhost:" + port);
-//}
+if (port > 80) {
+	open("http://localhost:" + port);
+}

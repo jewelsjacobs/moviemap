@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('movieMapApp')
-	.controller("MainCtrl", [ '$scope', 'geolocation', function ($scope, geolocation) {
-		$scope.link = "Home";
+	.controller("MainCtrl", [ '$scope', 'geolocation', 'promiseTracker', function ($scope, geolocation, promiseTracker) {
+
+		$scope.show = 'no';
 
 //		center map to gps location
 		geolocation.getLocation().then(function (data) {
@@ -29,6 +30,7 @@ angular.module('movieMapApp')
 					lng: Math.floor(data.coords.longitude),
 					zoom: 8
 				},
+				maxZoom: 18,
 				markers: {
 					m1: {
 						lat: Math.floor(data.coords.latitude),

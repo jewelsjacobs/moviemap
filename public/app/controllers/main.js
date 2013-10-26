@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Creates Map
+ */
 angular.module('movieMapApp')
 	.controller("MainCtrl", [ '$scope', 'geolocation', 'Map', function ($scope, geolocation, Map) {
 

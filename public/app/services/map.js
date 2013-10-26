@@ -1,9 +1,12 @@
 'use strict';
 
+/**
+ * App Map Services
+ */
 angular.module('movieMapApp')
 	.service('Map', function () {
 
-		// map icons
+		// leaflet map icons
 		var local_icons = {
 			// leaf
 			leaf_icon: L.icon({
@@ -18,6 +21,7 @@ angular.module('movieMapApp')
 		};
 
 		return {
+			// leaflet options
 			getMapOptions: function (data) {
 				return {
 					leaflet: {
@@ -48,6 +52,7 @@ angular.module('movieMapApp')
 					}
 				}
 			},
+			// freebase search suggest options
 			getFreebaseOptions: {
 				freebase: {
 					key: "AIzaSyCB6HFuNF-E9qTHW9Ba39NgkpHx701gr1Q",

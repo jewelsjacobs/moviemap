@@ -118,10 +118,12 @@ leafletDirective.directive('leaflet', [
 				tiles: '=tiles',
 				events: '=events',
 				layers: '=layers',
-				customControls: '=customControls',
-				geosearch: '=geosearch'
+				customControls: '=customControls'
 			},
 			template: '<div class="angular-leaflet-map"></div>',
+			controller: function($scope) {
+				return $scope;
+			},
 			link: function ($scope, element, attrs /*, ctrl */) {
 				if (attrs.width) {
 					element.css('width', attrs.width);
@@ -163,7 +165,7 @@ leafletDirective.directive('leaflet', [
 				setupMapEventBroadcasting();
 				setupMapEventCallbacks();
 				setupGeojson();
-				setupGeoSearch();
+				setUpMapScope();
 
 				// use of leafletDirectiveSetMap event is not encouraged. only use
 				// it when there is no easy way to bind data to the directive
@@ -1213,19 +1215,9 @@ leafletDirective.directive('leaflet', [
 					}
 				}
 
-				function setupGeoSearch() {
-					if (!$scope.geosearch) {
-						return;
-					}
-					new L.Control.GeoSearch({
-						provider: new L.GeoSearch.Provider.OpenStreetMap()
-					}).addTo(map);
-
-						$('#leaflet-control-geosearch-qry').removeAttr( "placeholder" );
-						$('#leaflet-control-geosearch-qry').suggest({
-							key: "AIzaSyCB6HFuNF-E9qTHW9Ba39NgkpHx701gr1Q",
-							filter:'(all type:/film/film_location)'
-						});
+				function setUpMapScope()
+				{
+					$scope.map = map;
 				}
 			}
 		};

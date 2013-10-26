@@ -22,7 +22,7 @@ angular.module('movieMapApp')
 
 		return {
 			// leaflet options
-			getMapOptions: function (data) {
+			getMyLocationMapOptions: function (data) {
 				return {
 					leaflet: {
 						icons: local_icons,
@@ -44,11 +44,29 @@ angular.module('movieMapApp')
 						defaults: {
 							scrollWheelZoom: false
 						}
-					},
-					freebase: {
-						key: "AIzaSyCB6HFuNF-E9qTHW9Ba39NgkpHx701gr1Q",
-						filter: '(all type:/film/film_location)',
-						show_id: true
+					}
+				}
+			},
+			getMovieLocationMapOptions: function (data) {
+				return {
+					leaflet: {
+						geo: {
+							lat: 40.095,
+							lng: -3.823,
+							zoom: 6
+						},
+						maxZoom: 18,
+						markers: {
+							m1: {
+								lat: 40.095,
+								lng: -3.823,
+								message: "I'm a static marker"
+							}
+						},
+						tileLayer: 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png',
+						defaults: {
+							scrollWheelZoom: false
+						}
 					}
 				}
 			},

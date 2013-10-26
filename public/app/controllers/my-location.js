@@ -4,13 +4,12 @@
  * Creates Map
  */
 angular.module('movieMapApp')
-	.controller("MainCtrl", [ '$scope', 'geolocation', 'Map', function ($scope, geolocation, Map) {
-
+	.controller("MyLocationCtrl", [ '$scope', 'geolocation', 'Map', function ($scope, geolocation, Map) {
 		// hide map until gps location retrieved
 		$scope.show = 'no';
 
 		function setUpMap(data) {
-			var mapOptions = Map.getMapOptions(data);
+			var mapOptions = Map.getMyLocationMapOptions(data);
 			// leaflet options
 			angular.extend($scope, mapOptions.leaflet);
 			// freebase search options

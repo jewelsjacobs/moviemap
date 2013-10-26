@@ -6,7 +6,11 @@ angular.module('movieMapApp', ['ngRoute', 'restangular','leaflet-directive', 'an
 		$routeProvider.
 			when('/', {
 				templateUrl: 'views/map.html',
-				controller: 'MainCtrl'
+				controller: 'MyLocationCtrl'
+			}).
+			when('/movies/location/:query', {
+				templateUrl: 'views/map.html',
+				controller: 'MoviesCtrl'
 			}).
 			otherwise({
 				redirectTo: '/'

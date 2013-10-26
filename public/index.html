@@ -28,10 +28,34 @@
 	<script src="bower_components/bootstrap/assets/js/respond.min.js"></script>
 	<![endif]-->
 </head>
-<!-- NAVBAR
-================================================== -->
 <body>
+<!-- Nav -->
+<nav class="navbar navbar-inverse" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex8-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">MovieMap</a>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-ex8-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="/">My Location</a></li>
+		</ul>
+	</div>
+	<!-- /.navbar-collapse -->
+</nav>
+
 <div class="container" ng-view></div>
+
+<footer>
+	<p>&copy; 2013 MovieMap, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
 
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="bower_components/bootstrap/assets/js/jquery.js"></script>
@@ -66,7 +90,9 @@
 <script src="app/directives/leaflet-geosearch.js"></script>
 <script src="app/directives/freebase-suggest.js"></script>
 <script src="app/services/map.js"></script>
-<script src="app/controllers/main.js"></script>
+<script src="app/services/freebase.js"></script>
+<script src="app/controllers/my-location.js"></script>
+<script src="app/controllers/movies.js"></script>
 
 </body>
 </html>

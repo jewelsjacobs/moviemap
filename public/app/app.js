@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('movieMapApp', ['ngRoute', 'restangular','leaflet-directive', 'angularSpinner', 'ngSanitize', 'angularSpinner', 'ajoslin.promise-tracker', 'geolocation'])
+angular.module('movieMapApp', ['ngRoute', 'leaflet-directive', 'angularSpinner', 'ngSanitize', 'geolocation'])
 	.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
 		$routeProvider.

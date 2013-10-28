@@ -18,7 +18,6 @@
 	<!--[if lte IE 8]>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
 	<![endif]-->
-	<link rel="stylesheet" href="styles/l.geosearch.css" />
 	<link rel="stylesheet" href="styles/style.css" />
 	<link rel="stylesheet" href="plugins/freebase/suggest.min.css" />
 
@@ -47,6 +46,12 @@
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="/">My Location</a></li>
 		</ul>
+		<form class="navbar-form navbar-right" role="search">
+			<div class="form-group">
+				<input type="text" id="search" class="form-control" placeholder="Search">
+			</div>
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
 	</div>
 	<!-- /.navbar-collapse -->
 </nav>
@@ -74,23 +79,19 @@
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/spin.js/dist/spin.js"></script>
 <script src="bower_components/angular-spinner/angular-spinner.js"></script>
-<script src="bower_components/lodash/lodash.js"></script>
-<script src="bower_components/restangular/dist/restangular.js"></script>
-<script src="bower_components/angular-promise-tracker/promise-tracker.js"></script>
 
 <!-- Leaflet -->
 <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 <script src="bower_components/angularjs-geolocation/src/geolocation.js"></script>
-<script src="plugins/leaflet-geosearch/l.control.geosearch.js"></script>
-<script src="plugins/leaflet-geosearch/l.geosearch.provider.openstreetmap.js"></script>
 <script src="bower_components/angular-leaflet/src/angular-leaflet-directive.js"></script>
 
 <!-- app -->
 <script src="app/app.js"></script>
-<script src="app/directives/leaflet-geosearch.js"></script>
 <script src="app/directives/freebase-suggest.js"></script>
-<script src="app/services/map.js"></script>
-<script src="app/services/freebase.js"></script>
+<script src="app/services/freebase-api.js"></script>
+<script src="app/services/leaflet-api.js"></script>
+<script src="app/services/openstreetmap-api.js"></script>
+<script src="app/factories/film.js"></script>
 <script src="app/controllers/my-location.js"></script>
 <script src="app/controllers/movies.js"></script>
 

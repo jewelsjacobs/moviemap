@@ -4,29 +4,33 @@
  * Creates Map
  */
 angular.module('movieMapApp')
-	.controller("MoviesCtrl", [ '$scope', '$routeParams', 'Map', 'FreebaseAPI', function ($scope, $routeParams, Map, FreebaseAPI) {
+	.controller("MoviesCtrl", [
+		'$scope',
+		'$routeParams',
+		'LeafletApi',
+		'FreebaseApi',
+		'Film',
+		'OpenstreetmapApi',
+		function ($scope, $routeParams, LeafletApi, FreebaseApi, Film, OpenstreetmapApi) {
 
 		$scope.show = 'no';
 
-		var params = {
-			query: $routeParams.query,
-			filter: "(all type:/film/film_location)"
-		}
+		FreebaseApi.getFilmTitleData($routeParams.query, "(all type:/film/film_location/featured_in_films)").
+			then(function (filmData) {
+				console.log(filmData.result["/film/film_location/featured_in_films"]);
+				Film.results.titles = filmData.result["/film/film_location/featured_in_films"];
+				OpenstreetmapApi.getLocation($routeParams.query)
+					.then(function(locationData){
+						var position = {
+							lat: parseFloat(locationData[0].lat),
+							lng: parseFloat(locationData[0].lon)
+						};
+						console.log(position);
+						Film.results.position = position;
+						angular.extend($scope, LeafletApi.setUp(position));
+						$scope.show = 'yes';
+					});
 
-		FreebaseAPI.get(params)
-			.then(
-			function (data) {
-				console.log(data);
-				setUpMap(data);
-				$scope.show = 'yes';
 			});
-
-		function setUpMap(data) {
-			var mapOptions = Map.getMovieLocationMapOptions(data);
-			// leaflet options
-			angular.extend($scope, mapOptions.leaflet);
-			// freebase search options
-			angular.extend($scope, Map.getFreebaseOptions);
-		}
 
 	}]);

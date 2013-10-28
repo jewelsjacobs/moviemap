@@ -19,19 +19,19 @@ angular.module('movieMapApp')
 		};
 
 		return {
-			setUp : function (position) {
+			setUp : function (position, message) {
 				return {
 					icons: icons,
 					geo: {
 						lat: position.lat,
 						lng: position.lng,
-						zoom: 18
+						zoom: 6
 					},
 					markers: {
 						m1: {
 							lat: position.lat,
 							lng: position.lng,
-							message: "I'm a static marker",
+							message: message,
 							icon: icons.movie_icon
 						}
 					},

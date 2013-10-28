@@ -27,7 +27,8 @@ angular.module('movieMapApp')
 						};
 						console.log(position);
 						Film.results.position = position;
-						angular.extend($scope, LeafletApi.setUp(position));
+						var message = Film.results.titles.toString();
+						angular.extend($scope, LeafletApi.setUp(position, message));
 						$scope.show = 'yes';
 					});
 

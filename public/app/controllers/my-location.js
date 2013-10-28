@@ -18,7 +18,7 @@ angular.module('movieMapApp')
 			}
 			console.log(position);
 			// setup Map
-			angular.extend($scope, LeafletApi.setUp(position));
+			angular.extend($scope, LeafletApi.setUp(position, "<b>Your Location</b>"));
 			// show map when gps location retrieved
 			$scope.show = 'yes';
 		});

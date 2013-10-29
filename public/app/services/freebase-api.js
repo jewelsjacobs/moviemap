@@ -5,12 +5,12 @@
  * API Docs: https://developers.google.com/freebase/
  */
 angular.module('movieMapApp')
-	.factory('FreebaseApi', ['HttpPromise', function (HttpPromise) {
+	.factory('FreebaseApi', ['HttpPromise', '$filter', function (HttpPromise, $filter) {
 
 		// Freebase constants
 		var KEY = 'AIzaSyCB6HFuNF-E9qTHW9Ba39NgkpHx701gr1Q',
 			SEARCH_URL = 'https://www.googleapis.com/freebase/v1/mqlread',
-			TOPIC_URL = 'https://www.googleapis.com/freebase/v1/topic/en/',
+			TOPIC_URL = 'https://www.googleapis.com/freebase/v1/topic/',
 			MAX_RESULTS = 5,
 			config = {
 				params : {
@@ -30,7 +30,7 @@ angular.module('movieMapApp')
 				}
 			},
 			getFilmTitleData: function (query) {
-				config.params.query = [
+				var mql = [
 							{
 								"id": null,
 								"name": query,
@@ -39,14 +39,42 @@ angular.module('movieMapApp')
 							}
 						];
 
+				config.params.query = $filter('json')(mql);
+
 				return HttpPromise.getResponse(SEARCH_URL, config, 'jsonp');
 			},
-			getFilmDetails: function (title) {
-				config.params.filter = "/film/film";
-
-				var url = TOPIC_URL + title
+			getFilmTopic:function(query) {
+				var url = TOPIC_URL + query;
+				config.params.filter = "/common/topic";
 
 				return HttpPromise.getResponse(url, config, 'jsonp');
+			},
+			getFilmDetails: function (query) {
+				var mql = [{
+					"id": null,
+					"name": query,
+					"type": "/film/film",
+					"tagline": [{
+						"lang": "/lang/en",
+						"limit": 1,
+						"optional": true,
+						"type": "/type/text",
+						"value": null
+					}],
+					"trailers": [],
+					"starring": [],
+					"initial_release_date": [],
+					"directed_by": [],
+					"genre": [],
+					"written_by": [],
+					"rating": [],
+					"subjects": [],
+					"limit": 1
+				}];
+
+				config.params.query = $filter('json')(mql);
+
+				return HttpPromise.getResponse(SEARCH_URL, config, 'jsonp');
 			}
 		}
 	}]);

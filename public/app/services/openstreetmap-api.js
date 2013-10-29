@@ -21,7 +21,7 @@ angular.module('movieMapApp')
 			},
 			getLocationName: function (position) {
 				config.params.lat = position.lat;
-				config.params.lon = position.lon;
+				config.params.lon = position.lng;
 				return HttpPromise.getResponse(REVERSE_URL, config, 'get');
 			}
 		}

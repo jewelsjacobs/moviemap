@@ -8,18 +8,26 @@ angular.module('movieMapApp')
 		'Film',
 		'FreebaseApi',
 		'Location',
-		'$filter', function (Film, FreebaseApi, Location, $filter) {
+		function (Film, FreebaseApi, Location) {
 			var FILTER_TYPE = "/film/film_location/featured_in_films";
-
 			return {
-				TEMPLATE : "../templates/popup-content.html",
 				createFimDetails: function () {
+					var details = [];
 					FreebaseApi.getFilmTitleData(Location.results.name).
-						then(function (filmData) {
-							Film.results.titles = filmData.result[FILTER_TYPE];
-							var details = [];
-							angular.forEach(Film.results.titles, function (title) {
-								details.push(FreebaseApi.getFilmDetails($filter('titles')(title)));
+						then(
+						/**
+						 *
+						 * @param filmData
+						 * @returns {Array}
+						 */
+						function (filmData) {
+							angular.forEach(filmData.result[0][FILTER_TYPE], function (title) {
+								FreebaseApi.getFilmDetails(title).then(function(detail){
+									FreebaseApi.getFilmTopic(detail.result[0].id).then(function(topic){
+										angular.extend(detail, topic);
+										details.push(detail);
+									})
+								})
 							});
 							return details;
 						});

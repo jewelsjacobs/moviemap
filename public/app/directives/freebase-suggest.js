@@ -8,7 +8,11 @@ angular.module('movieMapApp')
 
 		return {
 			restrict: 'A',
-			link: function () {
+			link:
+				/**
+				*
+				*/
+				function () {
 				$('#search').
 					suggest(FreebaseApi.options('(all type:/film/film_location)'))
 					.bind("fb-select", function (e, data) {

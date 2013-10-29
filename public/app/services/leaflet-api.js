@@ -6,10 +6,11 @@
 angular.module('movieMapApp')
 	.service('LeafletApi', function () {
 
+		// Creates a blue marker with the film icon
 		var icons = {
-			movie_icon: L.icon({
-				iconUrl: 'images/leaf-green.png',
-				shadowUrl: 'images/leaf-shadow.png',
+			movie_icon: L.AwesomeMarkers.icon({
+				icon: 'film',
+				markerColor: 'blue',
 				iconSize: [38, 95], // size of the icon
 				shadowSize: [50, 64], // size of the shadow
 				iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
@@ -19,13 +20,13 @@ angular.module('movieMapApp')
 		};
 
 		return {
-			setUp : function (position, message) {
+			setUp: function (position, message) {
 				return {
 					icons: icons,
 					geo: {
 						lat: position.lat,
 						lng: position.lng,
-						zoom: 6
+						zoom: 8
 					},
 					markers: {
 						m1: {

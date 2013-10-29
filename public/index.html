@@ -13,6 +13,9 @@
 	<!-- Bootstrap core CSS -->
 	<link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+
 	<!-- Leaflet CSS -->
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
 	<!--[if lte IE 8]>
@@ -20,6 +23,7 @@
 	<![endif]-->
 	<link rel="stylesheet" href="styles/style.css" />
 	<link rel="stylesheet" href="plugins/freebase/suggest.min.css" />
+	<link rel="stylesheet" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css"/>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -83,15 +87,20 @@
 <!-- Leaflet -->
 <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 <script src="bower_components/angularjs-geolocation/src/geolocation.js"></script>
+<script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
 <script src="bower_components/angular-leaflet/src/angular-leaflet-directive.js"></script>
 
 <!-- app -->
 <script src="app/app.js"></script>
 <script src="app/directives/freebase-suggest.js"></script>
+<script src="app/filters/titles.js"></script>
+<script src="app/helpers/http-promise.js"></script>
+<script src="app/factories/film.js"></script>
+<script src="app/factories/location.js"></script>
 <script src="app/services/freebase-api.js"></script>
 <script src="app/services/leaflet-api.js"></script>
 <script src="app/services/openstreetmap-api.js"></script>
-<script src="app/factories/film.js"></script>
+<script src="app/services/film-api.js"></script>
 <script src="app/controllers/my-location.js"></script>
 <script src="app/controllers/movies.js"></script>
 

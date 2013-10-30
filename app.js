@@ -1,13 +1,12 @@
-
 /**
  * Module dependencies.
  */
-
 var express = require("express"),
     app     = express(),
     routes = require('./routes'),
 		open = require('open'),
-    port    = parseInt(process.env.PORT, 10) || 5000;
+    port    = parseInt(process.env.PORT, 10) || 5000,
+		api = require('./routes/api');
 
 // Configuration
 app.configure(function(){
@@ -15,6 +14,7 @@ app.configure(function(){
 	app.use(express.logger('dev'));
   app.use(express.methodOverride());
   app.use(express.bodyParser());
+	// CORS
 	app.use(function(req, res, next) {
 		res.header("Access-Control-Allow-Origin", "*");
 		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -42,7 +42,23 @@ app.all('/', function(req, res, next) {
 	next();
 });
 
-// Routes
+/**
+ * OSM API
+ */
+app.get('/geocode/:name', api.geocode);
+
+//osm reverse geocode api - get location name from coordinates
+app.get('/reverse/:coordinates', api.reverse);
+
+/**
+ * Freebase API
+ */
+
+// place
+// test: {lat:40.7144,lng:-74.006}
+app.get('/freebase/:coordinates', api.freebase);
+
+
 app.get('/*', routes.index);
 
 // Start server

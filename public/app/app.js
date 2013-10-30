@@ -1,20 +1,42 @@
 'use strict';
 
-angular.module('movieMapApp', ['ngRoute', 'leaflet-directive', 'angularSpinner', 'ngSanitize', 'geolocation'])
-	.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
+angular.module('movieMapApp', [
+		'ngRoute',
+		'ui.router',
+		'leaflet-directive',
+		'angularSpinner',
+		'ngSanitize',
+		'geolocation'])
+	.config([
+		'$routeProvider',
+		'$locationProvider',
+		'$httpProvider',
+		'$stateProvider',
+		'$urlRouterProvider', function (
+			$routeProvider,
+			$locationProvider,
+			$httpProvider,
+			$stateProvider,
+			$urlRouterProvider) {
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
-		$routeProvider.
-			when('/', {
-				templateUrl: 'views/map.html',
-				controller: 'MyLocationCtrl'
-			}).
-			when('/movies/location/:query', {
-				templateUrl: 'views/map.html',
-				controller: 'MoviesCtrl'
-			}).
-			otherwise({
-				redirectTo: '/'
+
+		$stateProvider
+			.state('loading', {
+				templateUrl: "views/load.html",
+				controller: 'LoadCtrl',
+				url: "/"
+			})
+			.state('map', {
+				templateUrl: "views/map.html",
+				controller: 'MapCtrl',
+				url: "/map"
+			})
+			.state('map.movies', {
+				templateUrl: "views/map.movies.html",
+				controller: 'MoviesCtrl',
+				url: "/:name"
 			});
+
 		$locationProvider.html5Mode(true);
   }]).
 	run(function($rootScope) {

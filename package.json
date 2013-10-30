@@ -21,6 +21,9 @@
   },
   "dependencies": {
     "express": "~3.2.6",
-    "open": "0.0.4"
+    "open": "0.0.4",
+    "freebase": "~2.1.12",
+    "osmgeocoder": "0.0.1",
+    "JSON2": "~0.1.0"
   }
 }

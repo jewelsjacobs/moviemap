@@ -29,52 +29,23 @@ angular.module('movieMapApp')
 					zIndex: 999999999
 				}
 			},
-			getFilmTitleData: function (query) {
-				var mql = [
-							{
-								"id": null,
-								"name": query,
-								"type": "/film/film_location",
-								"/film/film_location/featured_in_films": []
-							}
-						];
+			getLocationName:function() {
 
-				config.params.query = $filter('json')(mql);
-
-				return HttpPromise.getResponse(SEARCH_URL, config, 'jsonp');
 			},
-			getFilmTopic:function(query) {
+			getLocationCoordinates:function(){
+
+			},
+			getFilmTtitleData:function(query) {
+				var url = TOPIC_URL + query;
+				config.params.filter = "/film/film_location/featured_in_films";
+
+				return HttpPromise.getResponse(url, config, 'jsonp');
+			},
+			getFilmTopicData:function(query) {
 				var url = TOPIC_URL + query;
 				config.params.filter = "/common/topic";
 
 				return HttpPromise.getResponse(url, config, 'jsonp');
-			},
-			getFilmDetails: function (query) {
-				var mql = [{
-					"id": null,
-					"name": query,
-					"type": "/film/film",
-					"tagline": [{
-						"lang": "/lang/en",
-						"limit": 1,
-						"optional": true,
-						"type": "/type/text",
-						"value": null
-					}],
-					"trailers": [],
-					"starring": [],
-					"initial_release_date": [],
-					"directed_by": [],
-					"genre": [],
-					"written_by": [],
-					"rating": [],
-					"subjects": [],
-					"limit": 1
-				}];
-
-				config.params.query = $filter('json')(mql);
-
-				return HttpPromise.getResponse(SEARCH_URL, config, 'jsonp');
 			}
 		}
 	}]);

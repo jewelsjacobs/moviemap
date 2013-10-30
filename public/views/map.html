@@ -1,18 +1,3 @@
-<!-- Spinner -->
-<div ng-show="show == 'no'">
-	<span style="position:fixed;top:20%;left:50%" us-spinner="spinnerOpts"/>
-	<div class="modal-backdrop"></div>
-</div>
-
-<!-- Pop up content -->
-<div id="popUp" ng-hide=true>
-	<div popup-content />
-</div>
-
 <!-- Start Map -->
-<div ng-switch on="show">
-	<div ng-switch-when="yes">
-		<leaflet markers="markers" freebase-suggest center="geo" height="480px" width="auto"></leaflet>
-	</div>
-</div>
+<leaflet markers="markers" freebase-suggest center="geo" height="480px" width="auto"></leaflet>
 <!-- /End Map -->

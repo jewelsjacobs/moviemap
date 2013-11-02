@@ -18,7 +18,7 @@ var path = require('path');
 
 module.exports = function (grunt) {
   // load all grunt tasks
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+	require('load-grunt-tasks')(grunt);
 
   // configurable paths
   var yeomanConfig = {
@@ -32,6 +32,17 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     yeoman: yeomanConfig,
+	  autoprefixer: {
+		  options: ['last 1 version'],
+		  dist: {
+			  files: [{
+				  expand: true,
+				  cwd: '.tmp/styles/',
+				  src: '{,*/}*.css',
+				  dest: '.tmp/styles/'
+			  }]
+		  }
+	  },
     watch: {
       coffee: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
@@ -40,56 +51,12 @@ module.exports = function (grunt) {
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
-      }
-//      livereload: {
-//        options: {
-//          livereload: LIVERELOAD_PORT
-//        },
-//        files: [
-//          '<%= yeoman.app %>/{,*/}*.html',
-//          '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-//          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
-//          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-//        ]
-//      }
+      },
+	    less: {
+		    files: ['<%= yeoman.app %>/styles/**/*.less'],
+		    tasks: ['less']
+	    },
     },
-//    express: {
-//      options: {
-//        port: 9000,
-//        // Change this to '0.0.0.0' to access the server from outside.
-//        hostname: 'localhost'
-//      },
-//      livereload: {
-//        options: {
-//          middleware: function (express) {
-//            return [
-//              lrSnippet,
-//              mountFolder(express, '.tmp'),
-//              mountFolder(express, yeomanConfig.app)
-//            ];
-//          }
-//        }
-//      },
-//      test: {
-//        options: {
-//          middleware: function (express) {
-//            return [
-//              mountFolder(express, '.tmp'),
-//              mountFolder(express, 'test')
-//            ];
-//          }
-//        }
-//      },
-//      dist: {
-//        options: {
-//          middleware: function (express) {
-//            return [
-//              mountFolder(express, yeomanConfig.dist)
-//            ];
-//          }
-//        }
-//      }
-//    },
     express: {
       options: {
         port: 9000,
@@ -272,28 +239,111 @@ module.exports = function (grunt) {
             'generated/*'
           ]
         }]
-      }
+      },
+	    styles: {
+		    expand: true,
+		    cwd: '<%= yeoman.app %>/styles',
+		    dest: '.tmp/styles/',
+		    src: '{,*/}*.css'
+	    }
     },
+	  less: {
+		  options: {
+			  paths: ['app/components'],
+			  //dumpLineNumbers: true
+		  },
+		  dist: {
+			  files: [{
+				  expand: true,     // Enable dynamic expansion.
+				  cwd: '<%= yeoman.app %>/styles/',      // Src matches are relative to this path.
+				  src: ['**/*.less'], // Actual pattern(s) to match.
+				  dest: '.tmp/styles/',   // Destination path prefix.
+				  ext: '.css',   // Dest filepaths will have this extension.
+			  }],
+		  },
+		  server: {
+			  files: [{
+				  expand: true,     // Enable dynamic expansion.
+				  cwd: '<%= yeoman.app %>/styles/',      // Src matches are relative to this path.
+				  src: ['**/*.less'], // Actual pattern(s) to match.
+				  dest: '.tmp/styles/',   // Destination path prefix.
+				  ext: '.css',   // Dest filepaths will have this extension.
+			  }],
+		  }
+	  },
     concurrent: {
       server: [
-        'coffee:dist'
+        'coffee:dist',
+	      'copy:styles'
       ],
       test: [
-        'coffee'
+        'coffee',
+	      'copy:styles'
       ],
       dist: [
         'coffee',
+	      'copy:styles',
         'imagemin',
         'svgmin'
         //'htmlmin'
       ]
     },
     karma: {
+	    e2e: {
+		    configFile: 'karma-e2e.conf.js',
+		    singleRun: true
+	    },
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
       }
     },
+//	  protractor: {
+//		  options: {
+//			  configFile: "./protractorConf.js", // Default config file
+//			  keepAlive: true, // If false, the grunt process stops when the test fails.
+//			  args: {
+//				  // Arguments passed to the command
+//			  }
+//		  },
+//		  your_target: {
+//			  configFile: "e2e.conf.js", // Target-specific config file
+//			  options: {
+//				  args: {} // Target-specific arguments
+//			  }
+//		  }
+//	  },
+//	  vows: {
+//		  all: {
+//			  options: {
+//				  // String {spec|json|dot-matrix|xunit|tap}
+//				  // defaults to "dot-matrix"
+//				  reporter: "spec",
+//				  // String or RegExp which is
+//				  // matched against title to
+//				  // restrict which tests to run
+//				  onlyRun: /helper/,
+//				  // Boolean, defaults to false
+//				  verbose: false,
+//				  // Boolean, defaults to false
+//				  silent: false,
+//				  // Colorize reporter output,
+//				  // boolean, defaults to true
+//				  colors: true,
+//				  // Run each test in its own
+//				  // vows process, defaults to
+//				  // false
+//				  isolate: false,
+//				  // String {plain|html|json|xml}
+//				  // defaults to none
+//				  coverage: "json"
+//			  },
+//			  // String or array of strings
+//			  // determining which files to include.
+//			  // This option is grunt's "full" file format.
+//			  src: ["test/*.js", "spec/*"]
+//		  }
+//	  },
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
@@ -318,6 +368,37 @@ module.exports = function (grunt) {
         }
       }
     }
+//	  vows: {
+//		  all: {
+//			  options: {
+//				  // String {spec|json|dot-matrix|xunit|tap}
+//				  // defaults to "dot-matrix"
+//				  reporter: "spec",
+//				  // String or RegExp which is
+//				  // matched against title to
+//				  // restrict which tests to run
+//				  onlyRun: /helper/,
+//				  // Boolean, defaults to false
+//				  verbose: false,
+//				  // Boolean, defaults to false
+//				  silent: false,
+//				  // Colorize reporter output,
+//				  // boolean, defaults to true
+//				  colors: true,
+//				  // Run each test in its own
+//				  // vows process, defaults to
+//				  // false
+//				  isolate: false,
+//				  // String {plain|html|json|xml}
+//				  // defaults to none
+//				  coverage: "json"
+//			  },
+//			  // String or array of strings
+//			  // determining which files to include.
+//			  // This option is grunt's "full" file format.
+//			  src: ["test/*.js", "spec/*"]
+//		  }
+//	  }
   });
 
   grunt.registerTask('server', function (target) {
@@ -327,8 +408,10 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+	    'less:server',
       'concurrent:server',
       'express:livereload',
+	    'autoprefixer',
       'open',
       'watch'
     ]);
@@ -338,15 +421,21 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'express:test',
-    'karma'
+	  'less',
+	  'autoprefixer'
+//	  'vows',
+	//  'protractor',
+  //  'karma'
   ]);
 
   grunt.registerTask('build', [
     'clean:dist',
+	  'less:dist',
     'useminPrepare',
     'concurrent:dist',
+	  'autoprefixer',
     'concat',
-    'copy',
+	  'copy:dist',
     'cdnify',
     'ngmin',
     'cssmin',

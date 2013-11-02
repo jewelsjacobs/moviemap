@@ -9,12 +9,25 @@
     <title><%= title %></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+	  <base href="/" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet" href="styles/bootstrap.css">
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
+	  <!-- build:css(.tmp) styles/main.css -->
+	  <link rel="stylesheet" href="styles/main.css">
+	  <!-- endbuild -->
+
+	  <!-- font awesome from BootstrapCDN -->
+	  <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+	  <!-- Leaflet CSS -->
+	  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+	  <!--[if lte IE 8]>
+	  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+	  <![endif]-->
+
+	  <link rel="stylesheet" href="plugins/freebase/suggest.min.css" />
+	  <link rel="stylesheet" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css"/>
+
 </head>
   <body ng-app="expressAngularApp">
     <!--[if lt IE 7]>
@@ -37,34 +50,43 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
+    <footer>
+	    <p>&copy; 2013 MovieMap, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
     <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/jquery-migrate/jquery-migrate.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="plugins/freebase/suggest.min.js"></script>
 
-        <!-- build:js scripts/plugins.js -->
-        <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
-        <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
-        <!-- endbuild -->
+    <!-- build:js scripts/plugins.js -->
+    <script src="bower_components/leaflet/src/Leaflet.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap/assets/js/holder.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/spin.js/dist/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+    <script src="bower_components/angularjs-geolocation/src/geolocation.js"></script>
+    <script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+    <script src="bower_components/angular-leaflet/src/angular-leaflet-directive.js"></script>
+    <!-- endbuild -->
 
-        <!-- build:js scripts/modules.js -->
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,public}) scripts/scripts.js -->
+    <!--<script src="app/app.js"></script>-->
+    <!--<script src="app/directives/freebase-suggest.js"></script>-->
+    <!--<script src="app/factories/search.js"></script>-->
+    <!--<script src="app/services/freebase-api.js"></script>-->
+    <!--<script src="app/services/leaflet-api.js"></script>-->
+    <!--<script src="app/services/openstreetmap-api.js"></script>-->
+    <!--<script src="app/controllers/load.js"></script>-->
+    <!--<script src="app/controllers/main.js"></script>-->
+    <!--<script src="app/controllers/map.js"></script>-->
+    <!--<script src="app/controllers/movies.js"></script>-->
+    <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <!-- endbuild -->
 </body>
 </html>

@@ -1,0 +1,14 @@
+{
+  "name": "angular-leaflet",
+  "homepage": "https://github.com/tombatossals/angular-leaflet-directive",
+  "version": "0.6.1",
+  "_release": "0.6.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.6.1",
+    "commit": "53ae8c5b5fa43d9ff7884da459e10d61f7391f0a"
+  },
+  "_source": "git://github.com/tombatossals/angular-leaflet-directive.git",
+  "_target": "~0.6.0",
+  "_originalSource": "angular-leaflet"
+}

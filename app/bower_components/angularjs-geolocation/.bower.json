@@ -1,0 +1,37 @@
+{
+  "name": "angularjs-geolocation",
+  "version": "0.1.0",
+  "homepage": "https://github.com/arunisrael/angularjs-geolocation",
+  "authors": [
+    "Arun Israel <arun.israel@gmail.com>"
+  ],
+  "description": "An angular.js wrapper around window.navigator.geolocation",
+  "main": "geolocation.js",
+  "keywords": [
+    "geolocation",
+    "angular.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.x"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.x"
+  },
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "ad326e609b2aabd48d77274fb3d0b66c265913d3"
+  },
+  "_source": "git://github.com/arunisrael/angularjs-geolocation.git",
+  "_target": "~0.1.0",
+  "_originalSource": "angularjs-geolocation"
+}

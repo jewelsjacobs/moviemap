@@ -60,9 +60,10 @@
     <script src="plugins/freebase/suggest.min.js"></script>
 
     <!-- build:js scripts/plugins.js -->
-    <script src="bower_components/leaflet/src/Leaflet.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="bower_components/leaflet/src/layer/marker/Icon.Default.js"></script>
+    <script src="bower_components/leaflet/src/layer/marker/Icon.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/bootstrap/assets/js/holder.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -73,6 +74,11 @@
     <script src="bower_components/angularjs-geolocation/src/geolocation.js"></script>
     <script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
     <script src="bower_components/angular-leaflet/src/angular-leaflet-directive.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,public}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,public}) scripts/scripts.js -->

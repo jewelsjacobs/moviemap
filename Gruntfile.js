@@ -55,7 +55,7 @@ module.exports = function (grunt) {
 	    less: {
 		    files: ['<%= yeoman.app %>/styles/**/*.less'],
 		    tasks: ['less']
-	    },
+	    }
     },
     express: {
       options: {
@@ -96,6 +96,7 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/*',
+            '<%= yeoman.app %>/styles/*.css',
             '!<%= yeoman.dist %>/.git*'
           ]
         }]
@@ -249,7 +250,7 @@ module.exports = function (grunt) {
     },
 	  less: {
 		  options: {
-			  paths: ['app/components'],
+			  paths: ['app/components']
 			  //dumpLineNumbers: true
 		  },
 		  dist: {
@@ -258,17 +259,26 @@ module.exports = function (grunt) {
 				  cwd: '<%= yeoman.app %>/styles/',      // Src matches are relative to this path.
 				  src: ['**/*.less'], // Actual pattern(s) to match.
 				  dest: '.tmp/styles/',   // Destination path prefix.
-				  ext: '.css',   // Dest filepaths will have this extension.
-			  }],
+				  ext: '.css'  // Dest filepaths will have this extension.
+			  }]
 		  },
+      dev: {
+        files: [{
+          expand: true,     // Enable dynamic expansion.
+          cwd: '<%= yeoman.app %>/styles/',      // Src matches are relative to this path.
+          src: ['**/*.less'], // Actual pattern(s) to match.
+          dest: '<%= yeoman.app %>/styles/',   // Destination path prefix.
+          ext: '.css'  // Dest filepaths will have this extension.
+        }]
+      },
 		  server: {
 			  files: [{
 				  expand: true,     // Enable dynamic expansion.
 				  cwd: '<%= yeoman.app %>/styles/',      // Src matches are relative to this path.
 				  src: ['**/*.less'], // Actual pattern(s) to match.
 				  dest: '.tmp/styles/',   // Destination path prefix.
-				  ext: '.css',   // Dest filepaths will have this extension.
-			  }],
+				  ext: '.css' // Dest filepaths will have this extension.
+			  }]
 		  }
 	  },
     concurrent: {
@@ -431,11 +441,13 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
 	  'less:dist',
+    'less:dev',
     'useminPrepare',
     'concurrent:dist',
 	  'autoprefixer',
     'concat',
 	  'copy:dist',
+	  'copy:styles',
     'cdnify',
     'ngmin',
     'cssmin',

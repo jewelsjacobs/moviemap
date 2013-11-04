@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('expressAngularApp', [])
+angular.module('expressAngularApp', ['ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {

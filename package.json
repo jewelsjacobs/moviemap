@@ -46,7 +46,6 @@
     "karma-requirejs": "~0.1.0",
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",
-    "karma-coverage": "~0.1.0",
     "grunt-svgmin": "~0.2.0",
     "grunt-rev": "~0.1.0",
     "grunt-open": "~0.2.0",
@@ -63,7 +62,6 @@
     "grunt-contrib-watch": "~0.5.3",
     "vows": "~0.7.0",
     "grunt-vows-runner": "~0.6.0",
-    "director": "~1.2.0",
     "json3": "~3.2.5"
   },
   "scripts": {

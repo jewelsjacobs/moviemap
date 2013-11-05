@@ -363,19 +363,6 @@ module.exports = function (grunt) {
         autoWatch: true,
         singleRun: false
       },
-      unit_coverage: {
-        configFile: './test/karma-unit.conf.js',
-        autoWatch: false,
-        singleRun: true,
-        reporters: ['progress', 'coverage'],
-        preprocessors: {
-          'app/scripts/*.js': ['coverage']
-        },
-        coverageReporter: {
-          type : 'html',
-          dir : 'coverage/'
-        }
-      }
     },
     cdnify: {
       dist: {
@@ -445,10 +432,6 @@ module.exports = function (grunt) {
   grunt.registerTask('autotest', ['karma:unit_auto']);
   grunt.registerTask('autotest:unit', ['karma:unit_auto']);
   grunt.registerTask('autotest:e2e', ['express:test','open:test', 'shell:selenium','watch:protractor']);
-
-  //coverage testing
-  grunt.registerTask('test:coverage', ['karma:unit_coverage']);
-  grunt.registerTask('coverage', ['karma:unit_coverage','open:coverage','express:coverage']);
 
   //installation-related
   grunt.registerTask('install:protractor', ['shell:protractor_install', 'shell:selenium']);

@@ -1,0 +1,8 @@
+cat <<EOF>chromedriververbose
+echo 'running chromedriver --verbose \$*'
+\$(dirname \$0)/chromedriver --verbose \$*
+EOF
+
+ mv chromedriververbose ./selenium/chromedriververbose
+
+chmod +x ./selenium/chromedriververbose

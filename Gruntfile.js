@@ -32,6 +32,27 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     yeoman: yeomanConfig,
+    shell: {
+      options: {
+        stdout: true
+      },
+      selenium: {
+        command: './selenium/start',
+        options: {
+          stdout: false,
+          async: true
+        }
+      },
+      protractor_install: {
+        command: 'node ./node_modules/protractor/bin/install_selenium_standalone'
+      },
+      npm_install: {
+        command: 'npm install'
+      },
+      bower_install: {
+        command: 'node ./node_modules/bower/bin/bower install'
+      }
+    },
 	  autoprefixer: {
 		  options: ['last 1 version'],
 		  dist: {
@@ -55,7 +76,11 @@ module.exports = function (grunt) {
 	    less: {
 		    files: ['<%= yeoman.app %>/styles/**/*.less'],
 		    tasks: ['less']
-	    }
+	    },
+      protractor: {
+        files: ['app/scripts/**/*.js','test/e2e/**/*.js'],
+        tasks: ['protractor:auto']
+      }
     },
     express: {
       options: {
@@ -73,8 +98,16 @@ module.exports = function (grunt) {
       },
       test: {
         options: {
+          port: 9999,
           server: path.resolve('./app.js'),
-          bases: [path.resolve('./.tmp'), path.resolve(__dirname, 'test')]
+          bases: [path.resolve('./.tmp'), path.resolve(__dirname, 'test'), path.resolve(__dirname, yeomanConfig.app)]
+        }
+      },
+      coverage: {
+        options: {
+          port: 5555,
+          keepalive: true,
+          bases: ['coverage/']
         }
       },
       dist: {
@@ -87,6 +120,12 @@ module.exports = function (grunt) {
     open: {
       server: {
         url: 'http://localhost:<%= express.options.port %>'
+      },
+      test: {
+        url: 'http://localhost:<%= express.test.options.port %>'
+      },
+      coverage: {
+        url: 'http://localhost:<%= express.coverage.options.port %>'
       }
     },
     clean: {
@@ -298,31 +337,46 @@ module.exports = function (grunt) {
         //'htmlmin'
       ]
     },
-    karma: {
-	    e2e: {
-		    configFile: 'karma-e2e.conf.js',
-		    singleRun: true
-	    },
-      unit: {
-        configFile: 'karma.conf.js',
-        singleRun: true
+    protractor: {
+      options: {
+        keepAlive: false,
+        configFile: "./test/protractor.conf.js"
+      },
+      singlerun: {},
+      auto: {
+        keepAlive: true,
+        options: {
+          args: {
+            seleniumPort: 4444
+          }
+        }
       }
     },
-//	  protractor: {
-//		  options: {
-//			  configFile: "./protractorConf.js", // Default config file
-//			  keepAlive: true, // If false, the grunt process stops when the test fails.
-//			  args: {
-//				  // Arguments passed to the command
-//			  }
-//		  },
-//		  your_target: {
-//			  configFile: "e2e.conf.js", // Target-specific config file
-//			  options: {
-//				  args: {} // Target-specific arguments
-//			  }
-//		  }
-//	  },
+    karma: {
+      unit: {
+        configFile: './test/karma-unit.conf.js',
+        autoWatch: false,
+        singleRun: true
+      },
+      unit_auto: {
+        configFile: './test/karma-unit.conf.js',
+        autoWatch: true,
+        singleRun: false
+      },
+      unit_coverage: {
+        configFile: './test/karma-unit.conf.js',
+        autoWatch: false,
+        singleRun: true,
+        reporters: ['progress', 'coverage'],
+        preprocessors: {
+          'app/scripts/*.js': ['coverage']
+        },
+        coverageReporter: {
+          type : 'html',
+          dir : 'coverage/'
+        }
+      }
+    },
 //	  vows: {
 //		  all: {
 //			  options: {
@@ -378,37 +432,6 @@ module.exports = function (grunt) {
         }
       }
     }
-//	  vows: {
-//		  all: {
-//			  options: {
-//				  // String {spec|json|dot-matrix|xunit|tap}
-//				  // defaults to "dot-matrix"
-//				  reporter: "spec",
-//				  // String or RegExp which is
-//				  // matched against title to
-//				  // restrict which tests to run
-//				  onlyRun: /helper/,
-//				  // Boolean, defaults to false
-//				  verbose: false,
-//				  // Boolean, defaults to false
-//				  silent: false,
-//				  // Colorize reporter output,
-//				  // boolean, defaults to true
-//				  colors: true,
-//				  // Run each test in its own
-//				  // vows process, defaults to
-//				  // false
-//				  isolate: false,
-//				  // String {plain|html|json|xml}
-//				  // defaults to none
-//				  coverage: "json"
-//			  },
-//			  // String or array of strings
-//			  // determining which files to include.
-//			  // This option is grunt's "full" file format.
-//			  src: ["test/*.js", "spec/*"]
-//		  }
-//	  }
   });
 
   grunt.registerTask('server', function (target) {
@@ -427,16 +450,32 @@ module.exports = function (grunt) {
     ]);
   });
 
+  //single run tests
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
-    'express:test',
-	  'less',
-	  'autoprefixer'
-//	  'vows',
-	//  'protractor',
-  //  'karma'
-  ]);
+    'less',
+    'autoprefixer',
+    'test:unit',
+    'test:e2e',
+    'test:vows']);
+  grunt.registerTask('test:unit', ['karma:unit']);
+  grunt.registerTask('test:vows', ['vows:all']);
+  grunt.registerTask('test:e2e', ['express:test','protractor:singlerun']);
+
+  //autotest and watch tests
+  grunt.registerTask('autotest', ['karma:unit_auto']);
+  grunt.registerTask('autotest:unit', ['karma:unit_auto']);
+  grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
+
+  //coverage testing
+  grunt.registerTask('test:coverage', ['karma:unit_coverage']);
+  grunt.registerTask('coverage', ['karma:unit_coverage','open:coverage','express:coverage']);
+
+  //installation-related
+  grunt.registerTask('install:protractor', ['shell:protractor_install']);
+  grunt.registerTask('install', ['update','shell:protractor_install']);
+  grunt.registerTask('update', ['shell:npm_install','shell:bower_install']);
 
   grunt.registerTask('build', [
     'clean:dist',

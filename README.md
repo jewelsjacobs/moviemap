@@ -1,6 +1,21 @@
-# Yeoman, Express and AngularJS demo
+# MovieMap
 
-This is a demo app that tries to integrate the yeoman workflow to a NodeJS/Express app with AngularJS.
+This is a demo app using:
+ * Leaflet
+ * AngularJS
+ * Express
+ * Bower
+ * Freebase
+ * OpenMap
+
+## Install
+
+```shell
+mkdir myproject
+cd myproject
+git clone https://github.com:jewelsjacobs/moviemap.git .
+grunt install
+```
 
 ## Blog post
 

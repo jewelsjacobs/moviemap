@@ -1,0 +1,1 @@
+./selenium/verbose; sleep 5; java -jar selenium/selenium-server-standalone-2.37.0.jar -Dwebdriver.chrome.driver=./selenium/chromedriververbose;

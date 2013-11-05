@@ -1,0 +1,2 @@
+echo 'running chromedriver --verbose $*'
+$(dirname $0)/chromedriver --verbose $*

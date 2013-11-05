@@ -22,7 +22,7 @@
   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-/*jslint vars:false*/
+/*jslint vars:false, bitwise:true*/
 /*jshint indent:4*/
 /*global exports:true, define:true*/
 (function (root, factory) {
@@ -50,11 +50,15 @@
     Syntax = {
         AssignmentExpression: 'AssignmentExpression',
         ArrayExpression: 'ArrayExpression',
+        ArrowFunctionExpression: 'ArrowFunctionExpression',
         BlockStatement: 'BlockStatement',
         BinaryExpression: 'BinaryExpression',
         BreakStatement: 'BreakStatement',
         CallExpression: 'CallExpression',
         CatchClause: 'CatchClause',
+        ClassBody: 'ClassBody',
+        ClassDeclaration: 'ClassDeclaration',
+        ClassExpression: 'ClassExpression',
         ConditionalExpression: 'ConditionalExpression',
         ContinueStatement: 'ContinueStatement',
         DebuggerStatement: 'DebuggerStatement',
@@ -72,6 +76,7 @@
         LabeledStatement: 'LabeledStatement',
         LogicalExpression: 'LogicalExpression',
         MemberExpression: 'MemberExpression',
+        MethodDefinition: 'MethodDefinition',
         NewExpression: 'NewExpression',
         ObjectExpression: 'ObjectExpression',
         Program: 'Program',
@@ -172,11 +177,15 @@
     VisitorKeys = {
         AssignmentExpression: ['left', 'right'],
         ArrayExpression: ['elements'],
+        ArrowFunctionExpression: ['params', 'body'],
         BlockStatement: ['body'],
         BinaryExpression: ['left', 'right'],
         BreakStatement: ['label'],
         CallExpression: ['callee', 'arguments'],
         CatchClause: ['param', 'body'],
+        ClassBody: ['body'],
+        ClassDeclaration: ['id', 'body', 'superClass'],
+        ClassExpression: ['id', 'body', 'superClass'],
         ConditionalExpression: ['test', 'consequent', 'alternate'],
         ContinueStatement: ['label'],
         DebuggerStatement: [],
@@ -194,6 +203,7 @@
         LabeledStatement: ['label', 'body'],
         LogicalExpression: ['left', 'right'],
         MemberExpression: ['object', 'property'],
+        MethodDefinition: ['key', 'value'],
         NewExpression: ['callee', 'arguments'],
         ObjectExpression: ['properties'],
         Program: ['body'],
@@ -547,7 +557,7 @@
     }
 
     function extendCommentRange(comment, tokens) {
-        var target, token;
+        var target;
 
         target = upperBound(tokens, function search(token) {
             return token.range[0] > comment.range[0];
@@ -561,11 +571,7 @@
 
         target -= 1;
         if (target >= 0) {
-            if (target < tokens.length) {
-                comment.extendedRange[0] = tokens[target].range[1];
-            } else if (token.length) {
-                comment.extendedRange[1] = tokens[tokens.length - 1].range[0];
-            }
+            comment.extendedRange[0] = tokens[target].range[1];
         }
 
         return comment;
@@ -666,7 +672,7 @@
         return tree;
     }
 
-    exports.version = '1.3.0';
+    exports.version = '1.3.2';
     exports.Syntax = Syntax;
     exports.traverse = traverse;
     exports.replace = replace;

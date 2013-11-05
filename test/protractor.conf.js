@@ -1,3 +1,12 @@
+var os = require('os');
+
+// Includes verbose command to fix Mac OS X 10.9 Maverick bug
+if (os.type() == 'Darwin' && os.release() == '13.0.0') {
+  var chromeDriver = './selenium/chromedriververbose';
+} else {
+  var chromeDriver = './selenium/chromedriver';
+};
+
 // A reference configuration file.
 exports.config = {
   // ----- How to setup Selenium -----
@@ -19,7 +28,7 @@ exports.config = {
   // find chromedriver. This will be passed to the selenium jar as
   // the system property webdriver.chrome.driver. If null, selenium will
   // attempt to find chromedriver using PATH.
-  chromeDriver: './selenium/chromedriververbose',
+  chromeDriver: chromeDriver,
   // Additional command line options to pass to selenium. For example,
   // if you need to change the browser timeout, use
   // seleniumArgs: ['-browserTimeout=60'],

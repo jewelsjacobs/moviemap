@@ -377,37 +377,6 @@ module.exports = function (grunt) {
         }
       }
     },
-//	  vows: {
-//		  all: {
-//			  options: {
-//				  // String {spec|json|dot-matrix|xunit|tap}
-//				  // defaults to "dot-matrix"
-//				  reporter: "spec",
-//				  // String or RegExp which is
-//				  // matched against title to
-//				  // restrict which tests to run
-//				  onlyRun: /helper/,
-//				  // Boolean, defaults to false
-//				  verbose: false,
-//				  // Boolean, defaults to false
-//				  silent: false,
-//				  // Colorize reporter output,
-//				  // boolean, defaults to true
-//				  colors: true,
-//				  // Run each test in its own
-//				  // vows process, defaults to
-//				  // false
-//				  isolate: false,
-//				  // String {plain|html|json|xml}
-//				  // defaults to none
-//				  coverage: "json"
-//			  },
-//			  // String or array of strings
-//			  // determining which files to include.
-//			  // This option is grunt's "full" file format.
-//			  src: ["test/*.js", "spec/*"]
-//		  }
-//	  },
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
@@ -431,6 +400,14 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    vows : {
+      options : {
+        reporter : "spec"
+      },
+      test : {
+        src : ["test/node/*.js", "test/node/**/*.js"]
+      }
     }
   });
 
@@ -445,7 +422,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'express:livereload',
 	    'autoprefixer',
-      'open',
+      'open:server',
       'watch'
     ]);
   });
@@ -458,23 +435,24 @@ module.exports = function (grunt) {
     'autoprefixer',
     'test:unit',
     'test:e2e',
-    'test:vows']);
+    'test:vows'
+  ]);
   grunt.registerTask('test:unit', ['karma:unit']);
-  grunt.registerTask('test:vows', ['vows:all']);
+  grunt.registerTask('test:vows', ['express:test', 'open:test', 'vows:test']);
   grunt.registerTask('test:e2e', ['express:test','protractor:singlerun']);
 
   //autotest and watch tests
   grunt.registerTask('autotest', ['karma:unit_auto']);
   grunt.registerTask('autotest:unit', ['karma:unit_auto']);
-  grunt.registerTask('autotest:e2e', ['connect:testserver','shell:selenium','watch:protractor']);
+  grunt.registerTask('autotest:e2e', ['express:test','open:test', 'shell:selenium','watch:protractor']);
 
   //coverage testing
   grunt.registerTask('test:coverage', ['karma:unit_coverage']);
   grunt.registerTask('coverage', ['karma:unit_coverage','open:coverage','express:coverage']);
 
   //installation-related
-  grunt.registerTask('install:protractor', ['shell:protractor_install']);
-  grunt.registerTask('install', ['update','shell:protractor_install']);
+  grunt.registerTask('install:protractor', ['shell:protractor_install', 'shell:selenium']);
+  grunt.registerTask('install', ['update','install:protractor']);
   grunt.registerTask('update', ['shell:npm_install','shell:bower_install']);
 
   grunt.registerTask('build', [

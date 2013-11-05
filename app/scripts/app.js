@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('expressAngularApp', ['ngRoute'])
-  .config(['$routeProvider', function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -10,4 +10,6 @@ angular.module('expressAngularApp', ['ngRoute'])
       .otherwise({
         redirectTo: '/'
       });
+
+    $locationProvider.html5Mode(true);
   }]);

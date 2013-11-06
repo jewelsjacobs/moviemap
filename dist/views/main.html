@@ -1,9 +1,27 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
-</div>
+<nav class="navbar navbar-inverse" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex8-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">MovieMap</a>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse navbar-ex8-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href ng-click="getCurrentLocation()">My Location</a></li>
+		</ul>
+		<form novalidate class="navbar-form navbar-right" role="search">
+			<div class="form-group">
+				<input type="text" id="search" freebase-suggest on-select="true" options=options class="form-control" ng-model="search.input" placeholder="Search">
+			</div>
+			<button ng-click="getLocationName(search)" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+	<!-- /.navbar-collapse -->
+</nav>
+<div ui-view></div>

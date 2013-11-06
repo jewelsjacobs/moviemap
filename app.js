@@ -15,7 +15,6 @@ var app = express();
 app.set('port', process.env.PORT || 8888);
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
-app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
@@ -25,17 +24,23 @@ if ('production' !== process.env.status) {
   // development only
   app.set('views', __dirname + '/app');
   app.use(express.static(path.join(__dirname, 'app')));
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(function(req, res) {
+    res.render('index.html', { title: 'MovieMap' });
+  });
+  app.use(express.errorHandler());
 } else {
   // production
   app.set('views', __dirname + '/dist');
   app.use(express.static(path.join(__dirname, 'dist')));
+  app.use(function(req, res) {
+    res.render('index.html', { title: 'MovieMap' });
+  });
 }
 
 /**
  * OSM API
  */
-app.get('/geocode/:name', api.geocode);
+app.get('/geocode/name/:name', api.geocode);
 
 //osm reverse geocode api - get location name from coordinates
 //app.get('/reverse/:coordinates', api.reverse);
@@ -47,7 +52,9 @@ app.get('/reverse/:lat/:lng', api.reverse);
 // place
 // test: {lat:40.7144,lng:-74.006}
 //app.get('/freebase/:coordinates', api.freebase);
-app.get('/freebase/:lat/:lng', api.freebase_coords);
+app.get('/freebase/lat/:lat/lng/:lng', api.freebase_coords);
+
+app.get('/freebase/topic/:name', api.freebase_topic);
 
 app.get('/', routes.index);
 

@@ -25,6 +25,13 @@ exports.freebase_coords = function(req, res) {
 	});
 };
 
+exports.freebase_topic = function(req, res) {
+  freebase.topic(req.params.name, {filter:"/film/film_location/featured_in_films"}, function(data){
+    res.send(data);
+    console.log(data);
+  });
+};
+
 exports.geocode = function(req, res) {
 	var name = req.params.name;
 	osm.geocode(name, function(err, response){

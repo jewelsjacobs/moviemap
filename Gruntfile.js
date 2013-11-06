@@ -76,11 +76,11 @@ module.exports = function (grunt) {
 	    less: {
 		    files: ['<%= yeoman.app %>/styles/**/*.less'],
 		    tasks: ['less']
-	    },
-      protractor: {
-        files: ['app/scripts/**/*.js','test/e2e/**/*.js'],
-        tasks: ['protractor:auto']
-      }
+	    }
+//      protractor: {
+//        files: ['app/scripts/**/*.js','test/e2e/**/*.js'],
+//        tasks: ['protractor:auto']
+//      }
     },
     express: {
       options: {
@@ -337,33 +337,33 @@ module.exports = function (grunt) {
         //'htmlmin'
       ]
     },
-    protractor: {
-      options: {
-        keepAlive: false,
-        configFile: "./test/protractor.conf.js"
-      },
-      singlerun: {},
-      auto: {
-        keepAlive: true,
-        options: {
-          args: {
-            seleniumPort: 4444
-          }
-        }
-      }
-    },
-    karma: {
-      unit: {
-        configFile: './test/karma-unit.conf.js',
-        autoWatch: false,
-        singleRun: true
-      },
-      unit_auto: {
-        configFile: './test/karma-unit.conf.js',
-        autoWatch: true,
-        singleRun: false
-      },
-    },
+//    protractor: {
+//      options: {
+//        keepAlive: false,
+//        configFile: "./test/protractor.conf.js"
+//      },
+//      singlerun: {},
+//      auto: {
+//        keepAlive: true,
+//        options: {
+//          args: {
+//            seleniumPort: 4444
+//          }
+//        }
+//      }
+//    },
+//    karma: {
+//      unit: {
+//        configFile: './test/karma-unit.conf.js',
+//        autoWatch: false,
+//        singleRun: true
+//      },
+//      unit_auto: {
+//        configFile: './test/karma-unit.conf.js',
+//        autoWatch: true,
+//        singleRun: false
+//      }
+//    },
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
@@ -387,15 +387,15 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
-    vows : {
-      options : {
-        reporter : "spec"
-      },
-      test : {
-        src : ["test/node/*.js", "test/node/**/*.js"]
-      }
     }
+//    vows : {
+//      options : {
+//        reporter : "spec"
+//      },
+//      test : {
+//        src : ["test/node/*.js", "test/node/**/*.js"]
+//      }
+//    }
   });
 
   grunt.registerTask('server', function (target) {
@@ -419,24 +419,24 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'less',
-    'autoprefixer',
-    'test:unit',
-    'test:e2e',
-    'test:vows'
+    'autoprefixer'
+//    'test:unit',
+//    'test:e2e',
+//    'test:vows'
   ]);
-  grunt.registerTask('test:unit', ['karma:unit']);
-  grunt.registerTask('test:vows', ['express:test', 'open:test', 'vows:test']);
-  grunt.registerTask('test:e2e', ['express:test','protractor:singlerun']);
-
-  //autotest and watch tests
-  grunt.registerTask('autotest', ['karma:unit_auto']);
-  grunt.registerTask('autotest:unit', ['karma:unit_auto']);
-  grunt.registerTask('autotest:e2e', ['express:test','open:test', 'shell:selenium','watch:protractor']);
+//  grunt.registerTask('test:unit', ['karma:unit']);
+//  grunt.registerTask('test:vows', ['express:test', 'open:test', 'vows:test']);
+//  grunt.registerTask('test:e2e', ['express:test','protractor:singlerun']);
+//
+//  //autotest and watch tests
+//  grunt.registerTask('autotest', ['karma:unit_auto']);
+//  grunt.registerTask('autotest:unit', ['karma:unit_auto']);
+//  grunt.registerTask('autotest:e2e', ['express:test','open:test', 'shell:selenium','watch:protractor']);
 
   //installation-related
-  grunt.registerTask('install:protractor', ['shell:protractor_install', 'shell:selenium']);
-  grunt.registerTask('install', ['update','install:protractor']);
-  grunt.registerTask('update', ['shell:npm_install','shell:bower_install']);
+//  grunt.registerTask('install:protractor', ['shell:protractor_install', 'shell:selenium']);
+//  grunt.registerTask('install', ['update','install:protractor']);
+//  grunt.registerTask('update', ['shell:npm_install','shell:bower_install']);
 
   grunt.registerTask('build', [
     'clean:dist',
@@ -457,8 +457,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'jshint',
-    'test',
+  //  'jshint',
+ //   'test',
     'build'
   ]);
 };

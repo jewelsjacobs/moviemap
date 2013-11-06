@@ -9,7 +9,8 @@
     <title><%= title %></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-	  <base href="/" />
+    <link rel="shortcut icon" href="./favicon.ico">
+    <base href="/index.html">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 	  <link rel="stylesheet" href="styles/eb4c7578.main.css">
@@ -27,7 +28,7 @@
 	  <link rel="stylesheet" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css"/>
 
 </head>
-  <body ng-app="expressAngularApp">
+  <body ng-app="movieMapApp">
     <!--[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -38,7 +39,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="container" ui-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -48,30 +49,14 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
-    <footer>
-	    <p>&copy; 2013 MovieMap, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="bower_components/jquery-migrate/jquery-migrate.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="plugins/freebase/suggest.min.js"></script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
 
-    <script src="scripts/19935451.plugins.js"></script>
+    <script src="scripts/a3cd8ddf.plugins.js"></script>
 
     <script src="scripts/d41d8cd9.scripts.js"></script>
-
-    <!--<script src="app/app.js"></script>-->
-    <!--<script src="app/directives/freebase-suggest.js"></script>-->
-    <!--<script src="app/factories/search.js"></script>-->
-    <!--<script src="app/services/freebase-api.js"></script>-->
-    <!--<script src="app/services/leaflet-api.js"></script>-->
-    <!--<script src="app/services/openstreetmap-api.js"></script>-->
-    <!--<script src="app/controllers/load.js"></script>-->
-    <!--<script src="app/controllers/main.js"></script>-->
-    <!--<script src="app/controllers/map.js"></script>-->
-    <!--<script src="app/controllers/movies.js"></script>-->
 
 </body>
 </html>

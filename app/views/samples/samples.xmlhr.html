@@ -1,0 +1,21 @@
+<script language="Javascript">
+  function xmlhttpPost(strURL) {
+    var xmlHttpReq = false;
+
+    if (window.XMLHttpRequest) {
+      xmlHttpReq = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+      xmlHttpReq = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    xmlHttpReq.open('GET', strURL, true);
+    xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xmlHttpReq.onreadystatechange = function() {
+      if (xmlHttpReq.readyState == 4) {
+        document.getElementById('result').innerHTML = xmlHttpReq.responseText;
+      }
+    }
+    xmlHttpReq.send(null);
+  }
+</script>
+<input value="Get Data" type="button" onclick='xmlhttpPost("data.txt")'></p>
+<div id="result"></div>

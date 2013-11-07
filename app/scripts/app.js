@@ -19,11 +19,22 @@ angular.module('movieMapApp', ['ngRoute', 'ui.router', 'leaflet-directive', 'ang
         templateUrl: "views/main.map.movies.html",
         controller: 'MoviesCtrl',
         url: "/:id"
+      })
+      .state('samples', {
+        templateUrl: "views/samples/samples.html",
+        url: "/samples"
+      })
+      .state('samples.hitcounter', {
+        templateUrl: "views/samples/samples.hitcounter.html",
+        url: "/hitcounter"
+      })
+      .state('samples.xmlhr', {
+        templateUrl: "views/samples/samples.xmlhr.html",
+        url: "/xmlhr"
       });
 
-    $urlRouterProvider
-      .when("/", "/app")
-      .otherwise("/app");
+//    $urlRouterProvider
+//      .when("/", "/app");
 
     $locationProvider.html5Mode(true);
   }]).

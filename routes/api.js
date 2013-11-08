@@ -2,7 +2,7 @@ var osm = require('osmgeocoder'),
 	freebase = require('freebase');
 
 exports.freebase_coords = function(req, res) {
-	freebase.place_data({lat:req.params.lat,lng:req.params.lng}, {}, function(data){
+	freebase.place_data({lat:req.params.lat, lng:req.params.lng, radius: '99900'}, {}, function(data){
 		res.send(data);
 		console.log(data);
 	});

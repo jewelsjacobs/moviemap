@@ -55,14 +55,14 @@
     "grunt-google-cdn": "~0.2.0",
     "grunt-ngmin": "0.0.3",
     "grunt-express": "~1.0.0-beta2",
-    "protractor": "~0.12.0",
     "grunt-protractor-runner": "~0.1.6",
     "api-easy": "~0.3.8",
     "grunt-karma": "~0.7.1",
     "grunt-contrib-watch": "~0.5.3",
     "vows": "~0.7.0",
     "grunt-vows-runner": "~0.6.0",
-    "json3": "~3.2.5"
+    "json3": "~3.2.5",
+    "protractor": "~0.12.0"
   },
   "scripts": {
     "test": "grunt test",

@@ -1,13 +1,14 @@
 @import '../bower_components/bootstrap/less/bootstrap';
+@import '../bower_components/animate-less/less/animate';
 
-.modal-backdrop {
-  opacity: 0.8;
-  filter: alpha(opacity=80);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1040;
-  background-color: #000000;
+.movies {
+  position: absolute;
+  z-index: 8;
+  top: 40%;
+  width: 300px;
+  overflow: scroll;
+}
+
+.leaflet-popup {
+  display: none;
 }

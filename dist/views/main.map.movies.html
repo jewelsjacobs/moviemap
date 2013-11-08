@@ -1,1 +1,10 @@
-<div>Buncha Movies</div>
+<div class="panel panel-primary movies" ng-animate="{enter: 'animated bounceInUp', leave: 'animated bounceOutDown'}">
+  <div class="panel-heading">
+    <h3 class="panel-title">Movies in {{ name }}</h3>
+  </div>
+  <div class="panel-body">
+    <li ng-repeat="title in titles">
+      {{ title.text }}
+    </li>
+  </div>
+</div>

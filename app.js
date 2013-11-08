@@ -7,7 +7,6 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , samples = require('./routes/samples')
   , api = require('./routes/api');
 
 var app = express();
@@ -56,9 +55,6 @@ app.get('/reverse/:lat/:lng', api.reverse);
 app.get('/freebase/lat/:lat/lng/:lng', api.freebase_coords);
 
 app.get('/freebase/topic/:name', api.freebase_topic);
-
-// Sample data
-app.get('/xmlhr', samples.xmlhr);
 
 app.get('/', routes.index);
 

@@ -1,5 +1,10 @@
-<ul>
-  <li class="animate-repeat" ng-repeat="title in titles">
-    {{ title.text }}
-  </li>
-</ul>
+<div class="panel panel-primary movies" ng-animate="{enter: 'animated bounceInUp', leave: 'animated bounceOutDown'}">
+  <div class="panel-heading">
+    <h3 class="panel-title">Movies in {{ name }}</h3>
+  </div>
+  <div class="panel-body">
+    <li ng-repeat="title in titles">
+      {{ title.text }}
+    </li>
+  </div>
+</div>

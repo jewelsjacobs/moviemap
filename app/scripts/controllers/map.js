@@ -11,6 +11,14 @@ angular.module('movieMapApp')
 
     angular.extend($scope, LeafletApi.setUp($stateParams, $stateParams.name));
 
+    Freebase.one('topic', $scope.name).get().then(function(movieTitles){
+      if (movieTitles.hasOwnProperty('property')) {
+        $scope.titles = movieTitles.property["/film/film_location/featured_in_films"]["values"];
+      } else {
+        $scope.titles = [{text : "No movies were created in " + $scope.name + " or we just can't find them."}];
+      }
+    });
+
     $scope.$on('leafletDirectiveMap.popupopen', function(event){
       $state.go('main.map.movies');
     });

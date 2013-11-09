@@ -29,7 +29,7 @@ angular.module('movieMapApp')
 
     $scope.spinnerStyle =  {
       position: 'absolute',
-      top: '70%',
+      top: '40%',
       left: '50%',
       'z-index': 1
     };

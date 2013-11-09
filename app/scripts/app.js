@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('movieMapApp', ['ngRoute', 'ngStorage', 'ngAnimate', 'ui.router', 'leaflet-directive', 'angularSpinner', 'ngSanitize', 'geolocation', 'restangular'])
-  .config(['$routeProvider', '$locationProvider', '$httpProvider', '$stateProvider', '$urlRouterProvider', function ($routeProvider, $locationProvider, $httpProvider, $stateProvider) {
+  .config(['$routeProvider', '$locationProvider', '$httpProvider', '$stateProvider', '$urlRouterProvider', function ($routeProvider, $locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $stateProvider
@@ -17,7 +17,6 @@ angular.module('movieMapApp', ['ngRoute', 'ngStorage', 'ngAnimate', 'ui.router',
       })
       .state('main.map.movies', {
         templateUrl: "views/main.map.movies.html",
-        controller: 'MoviesCtrl',
         url: "/"
       })
       .state('samples', {
@@ -32,6 +31,10 @@ angular.module('movieMapApp', ['ngRoute', 'ngStorage', 'ngAnimate', 'ui.router',
         templateUrl: "views/samples/samples.xmlhr.html",
         url: "/xmlhr"
       });
+
+    $urlRouterProvider
+      .when('/', '/app')
+      .when('/samples', '/samples');
 
     $locationProvider.html5Mode(true);
   }]);

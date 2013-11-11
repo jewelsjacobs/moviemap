@@ -15,10 +15,6 @@ angular.module('movieMapApp', ['ngRoute', 'ngStorage', 'ngAnimate', 'ui.router',
         controller: 'MapCtrl',
         url: "^/map/:lat/:lng/:name"
       })
-      .state('main.map.movies', {
-        templateUrl: "views/main.map.movies.html",
-        url: "/"
-      })
       .state('samples', {
         templateUrl: "views/samples/samples.html",
         url: "/samples"

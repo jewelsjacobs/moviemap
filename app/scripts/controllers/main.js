@@ -4,7 +4,7 @@
  * Global Controller
  */
 angular.module('movieMapApp')
-  .controller("MainCtrl", ['$scope', 'Search', 'Freebase', 'geolocation', '$state', 'Openstreetmap', '$localStorage', function ($scope, Search, Freebase, geolocation, $state, Openstreetmap, $localStorage) {
+  .controller("MainCtrl", ['$scope', 'Freebase', 'geolocation', '$state', 'Openstreetmap', '$localStorage', function ($scope, Freebase, geolocation, $state, Openstreetmap, $localStorage) {
 
     $scope.$storage = $localStorage;
     $scope.loading = true;
@@ -27,7 +27,7 @@ angular.module('movieMapApp')
       left: 'auto' // Left position relative to parent in px
     };
 
-    $scope.spinnerStyle =  {
+    $scope.spinnerStyle = {
       position: 'absolute',
       top: '40%',
       left: '50%',
@@ -49,7 +49,13 @@ angular.module('movieMapApp')
         });
       })
 
-    $scope.options = Search.options;
+    $scope.options = {
+      key: 'AIzaSyBg-XDekBtpbm2Gmksk8xcunU0ezk-q8g8',
+      filter: '(all type:/film/film_location)',
+      zIndex: 999999999,
+      flyout: false,
+    //  css_prefix: "mm-"
+    };
 
     this.getFreebaseSelectData = function (data) {
       Openstreetmap.one('name', data.name).get().then(function (positionData) {
@@ -59,7 +65,7 @@ angular.module('movieMapApp')
       });
     }
 
-    $scope.myLocation = function(){
+    $scope.myLocation = function () {
       $state.go('main.map', JSON.parse($scope.$storage.local));
     }
 

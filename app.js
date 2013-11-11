@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
+  , open = require('open')
   , api = require('./routes/api');
 
 var app = express();
@@ -63,3 +64,7 @@ module.exports = app;
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+if (app.get('port') == 8888) {
+  open("http://localhost:" + app.get('port'));
+}

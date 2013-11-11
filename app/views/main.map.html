@@ -1,4 +1,18 @@
-<!-- Spinner -->
-<leaflet markers="markers" options="defaults" event-broadcast="events" center="geo" height="480px" width="auto">
-</leaflet>
-<div ui-view></div>
+<div ng-switch="movieTitles">
+  <div ng-switch-when="loaded">
+    <leaflet markers="markers" options="defaults" center="geo" height="480px" width="auto">
+    </leaflet>
+  </div>
+</div>
+<div id="popup" ng-hide="true">
+  <div class="panel panel-primary movies">
+    <div class="panel-heading">
+      <h3 class="panel-title">Movies in {{ name }}</h3>
+    </div>
+    <div class="panel-body">
+      <li ng-repeat="title in titles">
+        {{ title.text }}
+      </li>
+    </div>
+  </div>
+</div>

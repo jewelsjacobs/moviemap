@@ -1,0 +1,30 @@
+.mm-fbs-pane {
+  background-color: #fff;
+  outline: solid #808080 1px;
+}
+.mm-fbs-status {
+  background-color: #fff;
+}
+.mm-fbs-list {
+  background-color: #fff;
+  list-style-type: none;
+}
+.mm-fbs-item {
+  background-color: #fff;
+  border-style: solid;
+  border-color: grey;
+  border-width: 1px;
+}
+.mm-fbs-item-name {
+  background-color: #fff;
+}
+.mm-fbs-item-type {
+  color: #fff;
+  display: none;
+}
+.mm-fbs-selected {
+  background-color: #fff;
+}
+.mm-fbs-item_type {
+  color: #fff;
+}

@@ -1,0 +1,14 @@
+.leaflet-popup-content {
+  margin: 0;
+  line-height: normal;
+}
+.leaflet-popup-content-wrapper {
+  padding: 0;
+}
+.leaflet-popup-tip-container {
+  top: -21px;
+}
+.movies {
+  font-size: 12px;
+  overflow: scroll;
+}

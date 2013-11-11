@@ -9281,13 +9281,17 @@ td.visible-print {
   -o-animation-name: wobble;
   animation-name: wobble;
 }
-.movies {
-  position: absolute;
-  z-index: 8;
-  top: 40%;
-  width: 300px;
-  overflow: scroll;
+.leaflet-popup-content {
+  margin: 0;
+  line-height: normal;
 }
-.leaflet-popup {
-  display: none;
+.leaflet-popup-content-wrapper {
+  padding: 0;
+}
+.leaflet-popup-tip-container {
+  top: -21px;
+}
+.movies {
+  font-size: 12px;
+  overflow: scroll;
 }

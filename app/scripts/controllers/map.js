@@ -4,9 +4,11 @@
  * Creates Map
  */
 angular.module('movieMapApp')
-	.controller("MapCtrl", ['$scope', 'Freebase', '$stateParams', '$timeout', function ($scope, Freebase, $stateParams, $timeout) {
+	.controller("MapCtrl", ['$scope', 'Freebase', '$stateParams', '$timeout', '$rootScope', function ($scope, Freebase, $stateParams, $timeout, $rootScope) {
 
     $scope.name = $stateParams.name;
+
+    $rootScope.loading = false;
 
     // Creates a blue marker with the film icon
     var icons = {

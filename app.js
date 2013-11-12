@@ -7,6 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
+  , open = require('open')
   , api = require('./routes/api');
 
 var app = express();
@@ -42,16 +43,12 @@ if ('production' !== process.env.status) {
  */
 app.get('/geocode/name/:name', api.geocode);
 
-//osm reverse geocode api - get location name from coordinates
-//app.get('/reverse/:coordinates', api.reverse);
 app.get('/reverse/:lat/:lng', api.reverse);
 
 /**
  * Freebase API
  */
-// place
 // test: {lat:40.7144,lng:-74.006}
-//app.get('/freebase/:coordinates', api.freebase);
 app.get('/freebase/lat/:lat/lng/:lng', api.freebase_coords);
 
 app.get('/freebase/topic/:name', api.freebase_topic);
@@ -63,3 +60,7 @@ module.exports = app;
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+if (app.get('port') === 8888) {
+  open("http://localhost:" + app.get('port'));
+}

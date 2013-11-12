@@ -4,10 +4,11 @@
  * Global Controller
  */
 angular.module('movieMapApp')
-  .controller("MainCtrl", ['$scope', 'Freebase', 'geolocation', '$state', 'Openstreetmap', '$localStorage', function ($scope, Freebase, geolocation, $state, Openstreetmap, $localStorage) {
+  .controller("MainCtrl", ['$scope', 'Freebase', 'geolocation', '$state', 'Openstreetmap', '$localStorage', '$rootScope', function ($scope, Freebase, geolocation, $state, Openstreetmap, $localStorage, $rootScope) {
+
+    $rootScope.loading = true;
 
     $scope.$storage = $localStorage;
-    $scope.loading = true;
     $scope.spinnerOpts = {
       lines: 13, // The number of lines to draw
       length: 20, // The length of each line
@@ -42,9 +43,9 @@ angular.module('movieMapApp')
         };
 
         Freebase.one('lat', position.lat).one('lng', position.lng).get().then(function (nameData) {
+          $rootScope.loading = false;
           var positionInfo = {lat: position.lat, lng: position.lng, name: nameData.city.name};
           $scope.$storage.local = JSON.stringify(positionInfo);
-          $scope.loading = false;
           $state.go('main.map', positionInfo);
         });
       })
@@ -54,18 +55,21 @@ angular.module('movieMapApp')
       filter: '(all type:/film/film_location)',
       zIndex: 999999999,
       flyout: false,
-    //  css_prefix: "mm-"
+      css_prefix: "mm-"
     };
 
     this.getFreebaseSelectData = function (data) {
+      $rootScope.loading = true;
       Openstreetmap.one('name', data.name).get().then(function (positionData) {
         Freebase.one('lat', positionData[0].lat).one('lng', positionData[0].lon).get().then(function (nameData) {
+          $rootScope.loading = false;
           $state.go('main.map', {lat: positionData[0].lat, lng: positionData[0].lon, name: nameData.city.name});
         });
       });
     }
 
     $scope.myLocation = function () {
+      $rootScope.loading = true;
       $state.go('main.map', JSON.parse($scope.$storage.local));
     }
 

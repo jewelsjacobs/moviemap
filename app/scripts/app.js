@@ -33,4 +33,7 @@ angular.module('movieMapApp', ['ngRoute', 'ngStorage', 'ngAnimate', 'ui.router',
       .when('/samples', '/samples');
 
     $locationProvider.html5Mode(true);
-  }]);
+  }])
+  .run(function($rootScope) {
+    $rootScope.loading = false;
+});

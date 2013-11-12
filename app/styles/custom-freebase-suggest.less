@@ -1,12 +1,15 @@
-
 // freebase suggest autocomplete
 .mm-fbs-pane {
-  background-color: #fff;
-  outline: solid #808080 1px;
+  li { background: white; }
+  li:nth-child(odd) { background: #d3d3d3; }
+  box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+  border: #428bca 1px solid;
 }
 
 .mm-fbs-status {
-  background-color: #fff;
+  background-color: #428bca;
+  color: white;
+  padding: 5px;
 }
 
 .mm-fbs-list {
@@ -16,13 +19,12 @@
 
 .mm-fbs-item {
   background-color: #fff;
-  border-style: solid;
-  border-color: grey;
-  border-width: 1px;
+  border: #808080 1px solid;
 }
 
-.mm-fbs-item-name {
-  background-color: #fff;
+.mm-fbs-item-name label{
+  font-weight: normal;
+  margin: 4px 8px 4px 8px;
 }
 
 .mm-fbs-item-type {

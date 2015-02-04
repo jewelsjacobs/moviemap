@@ -21,3 +21,4 @@ grunt install
 
 [Yeoman, Express and AngularJS blog post](http://davidemoro.blogspot.it/2013/08/yeoman-express-and-angularjs.html)
 
+[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png)](https://gratipay.com/jewelsjacobs/)
